@@ -65,7 +65,7 @@ Modules and Classes
 
 ---
 
-  How It Works**
+  How It Works
 1.   User Input:
    - Enter the CPU quantum time.
    - Enter the number of processes and their details (name, arrival time, burst time).
