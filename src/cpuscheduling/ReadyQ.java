@@ -10,7 +10,7 @@ package cpuscheduling;
  * @author eaz99
  */
 public class ReadyQ {
-     
+
      private Process process;
      private int duration;
      
@@ -41,7 +41,7 @@ public class ReadyQ {
                head.tail = tempReadyQ;
           }
      }
-     
+
      public ReadyQ getReadyQ(){
           if(head.next == null){
                return  null;

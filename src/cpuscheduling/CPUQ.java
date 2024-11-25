@@ -67,7 +67,7 @@ public class CPUQ {
 //               System.out.println("Combare Time\t tail.getEndTime = " + tail.getEndTime() + "\t current time = " + time);
 //               System.out.println("\n\n");
 
-               if (tail.getProcess() == p && tail.getEndTime() >= time) {
+               if (tail.getProcess() == p && tail.getEndTime() > time) {
                     return true;
                }
           }

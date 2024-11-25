@@ -19,13 +19,13 @@ public class Process {
      private int completionTime = 0;  // when the process finished its work
      private static String processesInfo = "";
      private boolean IsFirstTime = true;  // true mean yes it is first time for taking a round for the process
-     
+
      private int waitingTime;  // sum of time process waited without processing
      private int turnaroundTime;  // the time when the process finished minus its arrived time
      private int responseTime;  // calculate when the process first time respponse First Start Time - Arrival Time
 
      private ArrayList<Integer> rounds = new ArrayList<>();  // create segments of rounds with required quantoms for the process
-     private int numberOfRounds;
+     //private int numberOfRounds;
 
      private Process next;
      private Process prev;
@@ -58,7 +58,7 @@ public class Process {
                     remainBurst = remainBurst - quantom;
                } else {
                     this.rounds.add(remainBurst);
-                    this.numberOfRounds = rounds.size();
+                    //this.numberOfRounds = rounds.size();
                     break;
                }
           }
@@ -104,9 +104,9 @@ public class Process {
      public void calculateWaitingTime() {
           waitingTime = turnaroundTime - burstTime;
      }
-     
-     public void calculateResponseTime(int time){
-          if(IsFirstTime){
+
+     public void calculateResponseTime(int time) {
+          if (IsFirstTime) {
                responseTime = time - arrivelTime;
                IsFirstTime = false;
           }
@@ -122,6 +122,8 @@ public class Process {
           calculateTurnaroundTime();
           processesInfo += String.format("%-12s %-12d %-12d %-15d %-17d %-15d\n",
                   name, arrivelTime, burstTime, waitingTime, turnaroundTime, responseTime);
+          CPUScheduling.AVGTurenedaroundTime = CPUScheduling.AVGTurenedaroundTime + turnaroundTime;
+          CPUScheduling.AVGWaitingTime = CPUScheduling.AVGWaitingTime + waitingTime;
      }
 
      // Getter for processesInfo
@@ -178,14 +180,13 @@ public class Process {
           this.next = next;
      }
 
-     public int getNumberOfRounds() {
-          return numberOfRounds;
-     }
-
-     public void setNumberOfRounds(int numberOfRounds) {
-          this.numberOfRounds = numberOfRounds;
-     }
-
+//     public int getNumberOfRounds() {
+//          return numberOfRounds;
+//     }
+//
+//     public void setNumberOfRounds(int numberOfRounds) {
+//          this.numberOfRounds = numberOfRounds;
+//     }
      public Process getPrev() {
           return prev;
      }

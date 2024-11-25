@@ -63,6 +63,7 @@ public class CPUScheduling {
 
           System.out.println("\n\n\n");
           //queue.printTimeline();
+          printAVG(processesNum);
 
      }
 
@@ -143,7 +144,7 @@ public class CPUScheduling {
                               // then use other methods to calsulater the Arrival & Waiting Time
                               // then append the information of the process to the static String
                               // before deleting the process
-                              temp4ArriveTime.appendProcessInfo(time - 1);
+                              temp4ArriveTime.appendProcessInfo(time);
                               // delete a process that finished and do not have emainning rounds
                               fakeHeadProcess = fakeHeadProcess.rempveProcess(fakeHeadProcess, temp4ArriveTime);
                               doneProcess++;
@@ -270,5 +271,13 @@ public class CPUScheduling {
           }
 
           return headProcess;
+     }
+     
+     public static double AVGTurenedaroundTime = 0;
+     public static double AVGWaitingTime = 0;
+     
+     public static void printAVG(int processNum){
+          System.out.println("\n\nAVG Turnaround time: " + (AVGTurenedaroundTime/processNum));
+          System.out.println("AVG Waiting Time: " + (AVGWaitingTime/processNum));
      }
 }
