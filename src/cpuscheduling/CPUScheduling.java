@@ -63,7 +63,7 @@ public class CPUScheduling {
 
           System.out.println("\n\n\n");
           //queue.printTimeline();
-          printAVG(processesNum);
+          //printAVG(processesNum);
 
      }
 

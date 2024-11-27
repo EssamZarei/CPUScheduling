@@ -44,7 +44,7 @@ public class Process {
 
           if (this.tail == null) {
                this.tail = this;
-               this.next = this;
+               this.next = null;
                this.prev = null;
           }
      }
@@ -82,17 +82,30 @@ public class Process {
 
      // to delete a specific process
      public Process rempveProcess(Process headP, Process toRemove) {
+          System.out.println("Now want to Remove a process : " + toRemove.getName());
           // delete a first process
           if (headP == toRemove) {
                headP = headP.next;
                //headP.prev = null;
           } // delete last process
           else if (toRemove == tail) {
+               Process temp = toRemove.prev;
                tail.prev.next = null;
+               tail = temp;
           } else {
-               toRemove.prev.next = toRemove.next;
-               toRemove.next.prev = toRemove.prev;
+               System.out.println(toRemove.prev.getName());
+               System.out.println(toRemove.getName());
+               System.out.println(toRemove.next.getName());
+               Process tempNext = toRemove.next;
+               Process tempPrev = toRemove.prev;
+
+               tempNext.prev = toRemove.prev;
+               tempPrev.next = toRemove.next;
+
+//               toRemove.prev.next = toRemove.next;
+//               toRemove.next.prev = toRemove.prev;
           }
+          System.out.println("Process Removed : " + toRemove.getName());
           return headP;
      }
 
@@ -153,13 +166,14 @@ public class Process {
 
           // Traverse and format each process
           Process current = head;
-          while (current != null) {
-               sb.append(String.format("%-12s %-12d %-12d %-15d %-17d %-15d %-20s\n",
-                       current.name, current.arrivelTime, current.burstTime,
-                       current.waitingTime, current.turnaroundTime,
-                       current.responseTime, current.rounds.toString()));
-               current = current.next;
-          }
+               while (current != null) {
+                    sb.append(String.format("%-12s %-12d %-12d %-15d %-17d %-15d %-20s\n",
+                            current.name, current.arrivelTime, current.burstTime,
+                            current.waitingTime, current.turnaroundTime,
+                            current.responseTime, current.rounds.toString()));
+                    current = current.next;
+               }
+          
 
           return sb.toString();
      }

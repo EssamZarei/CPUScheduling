@@ -75,7 +75,7 @@ public class CPUQ {
      }
 
      public static boolean CPUBusy(int time) {
-          if (tail.getEndTime() < time) {
+          if (tail.getEndTime() > time) {
                return true;
           } else {
                return false;
